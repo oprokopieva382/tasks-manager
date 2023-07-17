@@ -4,14 +4,16 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Container, Paper } from "@mui/material";
+import {TasksAdder} from "./components/tasks-adder"
+import { TasksContainer } from "./components/tasks-container";
 //import { styled } from "@mui/material/styles";
 
-const sxStyles = {};
+export const sxStyles = {};
 
 const appContainer = {
   paddingLeft: 100,
   paddingRight: 100,
-  marginTop: 100,
+  marginTop: 10,
 };
 
 const wrapper = {
@@ -37,9 +39,11 @@ export const App = () => {
         </Toolbar>
       </AppBar>
       <Container sx={appContainer}>
-        <Paper sx={wrapper} elevation={0}>Hello
+        <Paper sx={wrapper} elevation={0}>
         {/* Component to add tasks - "TasksAdder" */}
-        {/*  Container area to display all tasks = " TascksContainer*/}
+        <TasksAdder/>
+        {/*  Container area to display all tasks = " TasksContainer*/}
+        <TasksContainer/>
         </Paper>
       </Container>
     </Box>
