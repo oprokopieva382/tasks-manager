@@ -2,10 +2,26 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import { Container, Paper } from "@mui/material";
+//import { styled } from "@mui/material/styles";
+
+const sxStyles = {};
+
+const appContainer = {
+  paddingLeft: 100,
+  paddingRight: 100,
+  marginTop: 100,
+};
+
+const wrapper = {
+  textAlign: "center",
+  width: "100%",
+};
 
 export const App = () => {
   return (
-    <div>
+    <Box sx={sxStyles}>
       <AppBar position="static">
         <Toolbar>
           <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
@@ -15,11 +31,17 @@ export const App = () => {
               src="logo.png"
             ></img>
           </IconButton>
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h5">
             Tasks
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
+      <Container sx={appContainer}>
+        <Paper sx={wrapper} elevation={0}>Hello
+        {/* Component to add tasks - "TasksAdder" */}
+        {/*  Container area to display all tasks = " TascksContainer*/}
+        </Paper>
+      </Container>
+    </Box>
   );
 };
