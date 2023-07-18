@@ -9,9 +9,19 @@ const sxStyles = {
   backgroundColor: "rgb(92.9%, 92.9%, 92.9%)",
 };
 export const TasksContainer = () => {
-  const tasks = useSelector((state) => state.tasks
-    );
-
+  const tasks = useSelector((state) => state.tasks);
+  const prioritisedTasks = function prioritise() {
+    const importantTasks = [];
+    const notImportantTasks = [];
+    tasks.forEach((t) => {
+      if (t.important) {
+        importantTasks.push(t);
+      } else {
+        notImportantTasks.push(t);
+      }
+    })
+    return importantTasks.concat(notImportantTasks)
+  }()
   return (
     <Box sx={sxStyles}>
       <Grid container spacing={2}>
@@ -21,9 +31,9 @@ export const TasksContainer = () => {
           </Typography>
           <Divider />
           <List>
-            {tasks.map((task) => {
+            {prioritisedTasks.map((task) => {
               if (!task.completed) {
-                return <TaskItem {...task} />;
+                return <TaskItem key={task.id} {...task} />;
               } else {
                 return null;
               }
@@ -38,7 +48,7 @@ export const TasksContainer = () => {
           <List>
             {tasks.map((task) => {
               if (task.completed) {
-                return <TaskItem {...task} />;
+                return <TaskItem key={task.id} {...task} />;
               } else {
                 return null;
               }
