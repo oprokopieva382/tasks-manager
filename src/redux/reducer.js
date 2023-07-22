@@ -7,6 +7,9 @@ import {
 } from "./actions";
 import shortid from "shortid";
 
+function saveStateBrowser(state) {
+  window.localStorage.setItem("tasks-manager", JSON.stringify(state));
+};
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK: {
@@ -23,6 +26,7 @@ export const reducer = (state = initialState, action) => {
           },
         ],
       };
+      saveStateBrowser(newState);
       return newState;
     }
     case TOGGLE_COMPLETED: {
@@ -35,6 +39,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         tasks: newTasks,
       };
+      saveStateBrowser(newState);
       return newState;
     }
     case DELETE_TASK: {
@@ -43,6 +48,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         tasks: newTasks,
       };
+      saveStateBrowser(newState);
       return newState;
     }
     case TOGGLE_IMPORTANT: {
@@ -53,6 +59,7 @@ export const reducer = (state = initialState, action) => {
         ...state,
         tasks: newTasks,
       };
+      saveStateBrowser(newState);
       return newState;
     }
     default:

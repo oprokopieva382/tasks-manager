@@ -4,21 +4,24 @@ import { ADD_TASK } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
 export const TasksAdder = () => {
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState("");
   const dispatch = useDispatch();
 
   const handleTextChange = (event) => {
-      setTitle(event.target.value);
+    setTitle(event.target.value);
   };
 
   const addTaskItem = () => {
-    dispatch({ 
-        type: ADD_TASK, 
-        payload: { 
-            title 
-        } });
+    if (title.length) {
+      dispatch({
+        type: ADD_TASK,
+        payload: {
+          title,
+        },
+      });
 
-    setTitle(null);
+      setTitle("");
+    }
   };
   return (
     <Box>
@@ -26,6 +29,7 @@ export const TasksAdder = () => {
         style={{ width: 400 }}
         label="Add new task"
         variant="filled"
+        value={title}
         onChange={handleTextChange}
       ></TextField>
       <Button
